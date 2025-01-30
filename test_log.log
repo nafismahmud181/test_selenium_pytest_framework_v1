@@ -1,0 +1,30 @@
+INFO     utils.logger:test_00_test_page.py:17 Starting test: test_login
+INFO     utils.logger:login_page.py:15 Navigating to login page.
+INFO     utils.logger:login_page.py:21 Entering username.
+INFO     utils.logger:login_page.py:24 Entering password.
+INFO     utils.logger:navigate_create_profile_page.py:12 Accessing transaction menu.
+INFO     utils.logger:navigate_create_profile_page.py:19 Navigating to Create Profile page.
+INFO     utils.logger:navigate_create_profile_page.py:25 Navigation to Create Profile page completed.
+INFO     utils.logger:create_profile_name.py:13 Filling out the Create Profile form.
+INFO     utils.logger:create_profile_name.py:40 Create Profile form successfully filled.
+INFO     utils.logger:radio_buttons_page.py:10 Interacting with ManualValidation radio button.
+INFO     utils.logger:radio_buttons_page.py:16 Interacting with MultiShipment radio button.
+INFO     utils.logger:radio_buttons_page.py:21 Interacting with SendTimeStamp radio button.
+INFO     utils.logger:radio_buttons_page.py:26 Interacting with ParseDocument radio button.
+INFO     utils.logger:radio_buttons_page.py:31 Interacting with IgnoreDensePages radio button.
+INFO     utils.logger:radio_buttons_page.py:36 Interacting with ExceptionalExcel radio button.
+INFO     utils.logger:radio_buttons_page.py:42 All radio button interactions completed.
+INFO     utils.logger:add_documents_page.py:11 Adding documents to the profile.
+INFO     utils.logger:add_documents_page.py:74 Document addition completed.
+INFO     utils.logger:email_setting.py:14 Filling email, domain and subject details.
+INFO     utils.logger:email_setting.py:19 Email domain(s) updated.
+INFO     utils.logger:email_setting.py:24 Email from updated.
+INFO     utils.logger:email_setting.py:36 Email subject updated.
+INFO     utils.logger:notification_setting_page.py:11 Configuring success notifications.
+INFO     utils.logger:notification_setting_page.py:63 Notification settings updated.
+INFO     utils.logger:submit_panel_page.py:10 Submitting the form.
+INFO     utils.logger:submit_panel_page.py:14 Form submitted successfully.
+INFO     utils.logger:navigate_transaction_page.py:14 Accessing transaction menu.
+INFO     utils.logger:navigate_transaction_page.py:21 Navigating to Transactions page.
+INFO     utils.logger:navigate_transaction_page.py:27 Navigation to Transactions page completed.
+INFO     utils.logger:test_00_test_page.py:46 Login test completed successfully.
