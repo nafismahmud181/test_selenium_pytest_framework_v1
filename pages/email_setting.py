@@ -32,7 +32,7 @@ class EmailSettingClass:
         EmailSubjectMatchCriteria.send_keys(Keys.TAB)
 
         EmailSubjectMatchCriteriaText = self.driver.execute_script("return document.activeElement")
-        EmailSubjectMatchCriteriaText.send_keys("Demo email subjectttttttttttt")
+        EmailSubjectMatchCriteriaText.send_keys("Demo email subject selenium")
         logger.info("Email subject updated.")
         time.sleep(1)
         EmailSubjectMatchCriteriaText.send_keys(Keys.TAB)
