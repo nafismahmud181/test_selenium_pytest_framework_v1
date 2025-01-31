@@ -20,7 +20,7 @@ class CreateProfileName:
             CustomerName.send_keys(Keys.TAB)
 
             project = self.driver.execute_script("return document.activeElement")
-            project.send_keys("CreateCustomsJob (B+CIV)")
+            project.send_keys("ShipmentCreate")
             time.sleep(1)
             project.send_keys(Keys.RETURN)
             project.send_keys(Keys.TAB)
