@@ -1,5 +1,6 @@
 import time
 
+import pandas as pd
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -40,11 +41,16 @@ class KeyExtractionTransaction:
             time.sleep(2)
 
             # Define the key data to be processed
-            key_data = [
-                {"key_field_name": "assembly", "type": "static", "label": "ab"},
-                {"key_field_name": "country code", "type": "static", "label": "BD"},
-                {"key_field_name": "consignee city", "type": "selector"}
-            ]
+            # key_data = [
+            #     {"key_field_name": "assembly", "type": "static", "label": "ab"},
+            #     {"key_field_name": "country code", "type": "static", "label": "BD"},
+            #     {"key_field_name": "consignee city", "type": "selector"}
+            # ]
+
+            df = pd.read_excel("utils/documents_data.xlsx", sheet_name="Sheet4")
+            df.columns = df.columns.str.strip()
+            df = df.fillna("")
+            key_data = df.to_dict("records")
 
             # Process each key field in the data
             for keyItem in key_data:
@@ -69,9 +75,28 @@ class KeyExtractionTransaction:
 
                     # Use ActionChains to simulate dragging
                     actions = ActionChains(self.driver)
+                    cursor_script = """
+                    var cursor = document.createElement('div');
+                    cursor.id = 'custom-cursor';
+                    cursor.style.position = 'absolute';
+                    cursor.style.width = '10px';
+                    cursor.style.height = '10px';
+                    cursor.style.background = 'red';
+                    cursor.style.borderRadius = '50%';
+                    cursor.style.zIndex = '10000';
+                    cursor.style.pointerEvents = 'none';
+                    document.body.appendChild(cursor);
+                    document.addEventListener('mousemove', function(e) {
+                        cursor.style.left = e.pageX + 'px';
+                        cursor.style.top = e.pageY + 'px';
+                    });
+                    """
+                    self.driver.execute_script(cursor_script)
                     start_x, start_y = 560, 225
                     end_x, end_y = 680, 300
-                    actions.move_by_offset(start_x, start_y).click_and_hold().move_by_offset(end_x - start_x,
+                    actions.move_by_offset(start_x, start_y)
+                    time.sleep(10)
+                    actions.click_and_hold().move_by_offset(end_x - start_x,
                                                                                              end_y - start_y).release().perform()
                     actions.reset_actions()
 

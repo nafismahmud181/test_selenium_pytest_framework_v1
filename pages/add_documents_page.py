@@ -22,12 +22,15 @@ class AddDocumentsPage:
         AddDocumentCount = self.driver.execute_script("return document.activeElement")
 
         # Excell Implementation
-        df = pd.read_excel("utils/documents_data.xlsx", sheet_name="Sheet1")
-        documents_data = df.replace({pd.NA: None}).to_dict("records")
+        df = pd.read_excel("utils/documents_data.xlsx", sheet_name="Sheet3")
+        df.columns = df.columns.str.strip()
+        df = df.fillna("")
+        documents_data = df.to_dict("records")
 
-        AddDocumentCount.send_keys(str(len(documents_data) - 1))
-        AddDocument.send_keys(Keys.RETURN)
-
+        if len(documents_data) > 1:
+            AddDocumentCount.send_keys(str(len(documents_data) - 1))
+            AddDocument.send_keys(Keys.RETURN)
+        print(documents_data)
         for document in documents_data:
             DocumentType.send_keys(document['document_type'])
             DocumentType.send_keys(Keys.RETURN)
@@ -54,6 +57,7 @@ class AddDocumentsPage:
 
             Category = self.driver.execute_script("return document.activeElement")
             Category.send_keys(document['category'])
+            time.sleep(5)
             Category.send_keys(Keys.RETURN)
             time.sleep(1)
             Category.send_keys(Keys.TAB)
