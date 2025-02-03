@@ -24,6 +24,5 @@ class LoginPage:
         logger.info("Entering password.")
         password_input = self.driver.find_element(By.ID, "login-password")
         password_input.send_keys(password)
-        self.driver.save_screenshot("screenshots/login_success.png")
         password_input.send_keys(Keys.ENTER)
         time.sleep(6)
