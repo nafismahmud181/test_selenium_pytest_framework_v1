@@ -1,7 +1,6 @@
 import os
 import json
 import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -19,17 +18,23 @@ class TransactionZipUpload:
                 EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Upload Transaction']"))
             )
             batch_upload_button.click()
-
+            time.sleep(5)
             logger.info("Selecting the file for upload.")
             batch_upload_field = self.wait.until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, ".custom-file-input"))
             )
 
             # Dynamically get the ZIP file path
-            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Get test_selenium_pytest_framework_v1 path
-            file_path = os.path.join(base_dir, "utils", "ZIP", "20250130.00012.zip")
-            batch_upload_field.send_keys(file_path)
 
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+            file_path = os.path.join(base_dir, "utils", "ZIP", "transaction_20250130.00012.zip")
+
+            if not os.path.exists(file_path):
+                raise FileNotFoundError(f"ZIP file not found: {file_path}")
+
+            time.sleep(5)
+            batch_upload_field.send_keys(file_path)
+            time.sleep(5)
             logger.info("Clicking the 'Upload' button.")
             batch_submit_button = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Upload']"))
@@ -49,8 +54,8 @@ class TransactionZipUpload:
 
             # Save batch_ID to a JSON file
             batch_file_path = os.path.join(base_dir, "utils", "batch_id.json")
-            with open(batch_file_path, "w") as batch_file:
-                json.dump({"batch_ID": batch_ID}, batch_file)
+            with open(batch_file_path, "w", encoding="utf-8") as batch_file:
+                json.dump({"transaction_batch_ID": batch_ID}, batch_file, ensure_ascii=False, indent=4)
 
             return batch_ID
 

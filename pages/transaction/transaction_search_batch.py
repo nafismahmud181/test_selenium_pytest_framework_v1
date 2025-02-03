@@ -15,12 +15,12 @@ class TransactionBatchSearch:
     def get_batch_id():
         """Retrieve batch_ID from the JSON file."""
         try:
-            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Get test_selenium_pytest_framework_v1 path
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
             batch_file_path = os.path.join(base_dir, "utils", "batch_id.json")
 
             with open(batch_file_path, "r") as batch_file:
                 data = json.load(batch_file)
-                return data.get("batch_ID")
+                return data.get("transaction_batch_ID")
 
         except FileNotFoundError:
             logger.error("Batch ID file not found.")
@@ -33,11 +33,11 @@ class TransactionBatchSearch:
     def clear_batch_id():
         """Clear the batch_ID in the JSON file after use."""
         try:
-            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Get test_selenium_pytest_framework_v1 path
+            base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
             batch_file_path = os.path.join(base_dir, "utils", "batch_id.json")
 
             with open(batch_file_path, "w") as batch_file:
-                json.dump({"batch_ID": ""}, batch_file)
+                json.dump({"transaction_batch_ID": ""}, batch_file)
 
             logger.info("Batch ID has been cleared in batch_id.json.")
 
@@ -56,9 +56,12 @@ class TransactionBatchSearch:
                 EC.presence_of_all_elements_located((By.CLASS_NAME, "form-control"))
             )
 
+            print("got the search fiield")
+
             if form_elements:
                 logger.info(f"Entering Batch ID: {batch_id}")
                 form_elements[1].send_keys(batch_id)
+                time.sleep(5)
                 form_elements[1].send_keys(Keys.RETURN)
                 time.sleep(5)
 

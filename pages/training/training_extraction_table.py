@@ -7,7 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utils.logger import logger
 
-class TableExtractionTransaction:
+class TableExtractionTraining:
     def __init__(self, driver):
         self.driver = driver
 
@@ -50,8 +50,7 @@ class TableExtractionTransaction:
             end_x, end_y = 1140, 300
             actions = ActionChains(self.driver)
             actions.move_by_offset(start_x, start_y).perform()
-            time.sleep(10)
-            time.sleep(1)
+            time.sleep(5)
             actions.key_down(Keys.SHIFT)
             for x in range(start_x, end_x, 40):
                 actions.move_by_offset(40, 0).perform()
@@ -59,6 +58,7 @@ class TableExtractionTransaction:
             actions.key_up(Keys.SHIFT)
             actions.click()
             actions.perform()
+            actions.reset_actions()
             time.sleep(1)
 
             save_button.send_keys(Keys.RETURN)

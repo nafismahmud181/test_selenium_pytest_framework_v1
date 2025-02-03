@@ -15,7 +15,6 @@ class LinkedBatchOpen:
                 EC.visibility_of_element_located((By.XPATH, "(//div[@class='d-inline'])[1]"))
             )
             expand.click()
-            print("Expanded linked batch.")
 
             linked_batch = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.XPATH,
@@ -28,7 +27,7 @@ class LinkedBatchOpen:
             WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((By.CSS_SELECTOR, ".form-control"))
             )
-            time.sleep(20)
+            time.sleep(10)
         except Exception as e:
             logger.error(f"An error occurred while opening linked batch: {e}")
             raise

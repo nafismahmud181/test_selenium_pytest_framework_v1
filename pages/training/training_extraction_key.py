@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utils.logger import logger
 
-class KeyExtractionTransaction:
+class KeyExtractionTraining:
     def __init__(self, driver):
         self.driver = driver
 
@@ -18,9 +18,14 @@ class KeyExtractionTransaction:
                 EC.visibility_of_element_located((By.CSS_SELECTOR, ".form-control"))
             )
 
+            df = pd.read_excel("utils/documents_data.xlsx", sheet_name="Sheet4")
+            df.columns = df.columns.str.strip()
+            df = df.fillna("")
+            key_data = df.to_dict("records")
             time.sleep(5)
+
             logger.info("Filling the form with initial data.")
-            add_keys.send_keys("3")
+            add_keys.send_keys(str(len(key_data)))
             add_keys.send_keys(Keys.RETURN)
             time.sleep(3)
             add_keys.send_keys(Keys.TAB)
@@ -47,11 +52,6 @@ class KeyExtractionTransaction:
             #     {"key_field_name": "consignee city", "type": "selector"}
             # ]
 
-            df = pd.read_excel("utils/documents_data.xlsx", sheet_name="Sheet4")
-            df.columns = df.columns.str.strip()
-            df = df.fillna("")
-            key_data = df.to_dict("records")
-
             # Process each key field in the data
             for keyItem in key_data:
                 logger.info(f"Processing key field: {keyItem['key_field_name']}")
@@ -67,10 +67,11 @@ class KeyExtractionTransaction:
                 types.send_keys(Keys.TAB)
 
                 if keyItem['type'] == "selector":
+
                     logger.info(f"Handling selector for key field: {keyItem['key_field_name']}")
-                    # Click the selector icon to open the selector
+
                     selector_icon_open = self.driver.find_element(By.XPATH,
-                                                             "/html[1]/body[1]/div[2]/div[1]/div[3]/div[3]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[7]/*[name()='svg'][1]")
+                                                             "(//*[name()='svg'][@title='Selector'])[1]")
                     selector_icon_open.click()
 
                     # Use ActionChains to simulate dragging
@@ -92,22 +93,20 @@ class KeyExtractionTransaction:
                     });
                     """
                     self.driver.execute_script(cursor_script)
+
                     start_x, start_y = 560, 225
                     end_x, end_y = 680, 300
-                    actions.move_by_offset(start_x, start_y)
+                    # actions.move_by_offset(start_x, start_y)
+                    actions.move_by_offset(560, 225).perform()
                     time.sleep(10)
-                    actions.click_and_hold().move_by_offset(end_x - start_x,
-                                                                                             end_y - start_y).release().perform()
+                    actions.click_and_hold().move_by_offset(end_x - start_x, end_y - start_y).release().perform()
                     actions.reset_actions()
 
                     time.sleep(2)
-                    capture_icon = self.driver.find_element(By.XPATH,
-                                                       "(//*[name()='svg'][@title='Capture'])[1]")
+                    capture_icon = self.driver.find_element(By.XPATH, "(//*[name()='svg'][@title='Capture'])[1]")
                     capture_icon.click()
 
-                    # Close the selector icon
-                    selector_icon_close = self.driver.find_element(By.XPATH,
-                                                              "/html[1]/body[1]/div[2]/div[1]/div[3]/div[3]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[7]/*[name()='svg'][1]")
+                    selector_icon_close = self.driver.find_element(By.XPATH, "(//*[name()='svg'][@title='Selector'])[1]")
                     selector_icon_close.click()
                 else:
                     logger.info(f"Entering label data for key field: {keyItem['key_field_name']}")
@@ -133,5 +132,5 @@ class KeyExtractionTransaction:
             logger.info("Form submission test completed successfully.")
 
         except Exception as e:
-            logger.error(f"An error occurred while reprocessing a batch: {e}")
+            logger.error(f"An error occurred while Extracting keys in Training: {e}")
             raise

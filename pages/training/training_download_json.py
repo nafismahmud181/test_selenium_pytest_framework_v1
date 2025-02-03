@@ -10,7 +10,7 @@ from utils.logger import logger
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # test_selenium_pytest_framework_v1
 download_dir = os.path.join(base_dir, "utils")
 
-class TansactionJsonDownload:
+class TrainingJsonDownload:
     def __init__(self, driver):
         self.driver = driver
 
