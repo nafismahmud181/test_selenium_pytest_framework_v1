@@ -1,15 +1,14 @@
 import time
 
-from pages.add_documents_page import AddDocumentsPage
-from pages.email_setting import EmailSettingClass
-from pages.navigate_transaction_page import NavigateTransactionPage
-from pages.notification_setting_page import NotificationSettingPage
-from pages.radio_buttons_page import RadioButtonsPage
-from pages.submit_panel_page import SubmitPanelPage
+from pages.create_profile.add_documents_page import AddDocumentsPage
+from pages.create_profile.email_setting import EmailSettingClass
+from pages.navigation import NavigationToPages
+from pages.create_profile.notification_setting_page import NotificationSettingPage
+from pages.create_profile.radio_buttons_page import RadioButtonsPage
+from pages.create_profile.submit_panel_page import SubmitPanelPage
 from utils.logger import logger
 from pages.login_page import LoginPage
-from pages.create_profile_name import CreateProfileName
-from pages.navigate_create_profile_page import NavigateCreateProfilePage
+from pages.create_profile.create_profile_name import CreateProfileName
 
 
 def test_login(setup):
@@ -18,8 +17,8 @@ def test_login(setup):
     login_page = LoginPage(driver)
     login_page.login()
 
-    Navigate_profile_page = NavigateCreateProfilePage(driver)
-    Navigate_profile_page.access_navigate_create_profile_page()
+    navigate_profile_page = NavigationToPages(driver)
+    navigate_profile_page.transaction_to_create_profile()
 
     create_profile_name = CreateProfileName(driver)
     create_profile_name.fill_create_profile_form()
@@ -39,9 +38,8 @@ def test_login(setup):
     submit_panel_page = SubmitPanelPage(driver)
     submit_panel_page.submit_form()
 
-    Navigate_transaction_page = NavigateTransactionPage(driver)
-    Navigate_transaction_page.access_navigate_transaction_page()
+    navigate_transaction_page = NavigationToPages(driver)
+    navigate_transaction_page.profile_to_transaction()
 
-
-    logger.info("Login test completed successfully.")
+    logger.info("Successfully created our profile")
     time.sleep(10)
