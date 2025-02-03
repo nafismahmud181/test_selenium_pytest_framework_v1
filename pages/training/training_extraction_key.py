@@ -14,17 +14,19 @@ class KeyExtractionTraining:
 
     def key_extraction_part(self):
         try:
+            logger.info("Waiting for the key input field to become visible.")
             add_keys = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((By.CSS_SELECTOR, ".form-control"))
             )
 
+            logger.info("Reading data from 'documents_data.xlsx' - Sheet4.")
             df = pd.read_excel("utils/documents_data.xlsx", sheet_name="Sheet4")
             df.columns = df.columns.str.strip()
             df = df.fillna("")
             key_data = df.to_dict("records")
             time.sleep(5)
 
-            logger.info("Filling the form with initial data.")
+            logger.info(f"Total keys to process: {len(key_data)}")
             add_keys.send_keys(str(len(key_data)))
             add_keys.send_keys(Keys.RETURN)
             time.sleep(3)
@@ -73,41 +75,28 @@ class KeyExtractionTraining:
                     selector_icon_open = self.driver.find_element(By.XPATH,
                                                              "(//*[name()='svg'][@title='Selector'])[1]")
                     selector_icon_open.click()
+                    logger.info("Opened the Selector tool.")
 
                     # Use ActionChains to simulate dragging
                     actions = ActionChains(self.driver)
-                    cursor_script = """
-                    var cursor = document.createElement('div');
-                    cursor.id = 'custom-cursor';
-                    cursor.style.position = 'absolute';
-                    cursor.style.width = '10px';
-                    cursor.style.height = '10px';
-                    cursor.style.background = 'red';
-                    cursor.style.borderRadius = '50%';
-                    cursor.style.zIndex = '10000';
-                    cursor.style.pointerEvents = 'none';
-                    document.body.appendChild(cursor);
-                    document.addEventListener('mousemove', function(e) {
-                        cursor.style.left = e.pageX + 'px';
-                        cursor.style.top = e.pageY + 'px';
-                    });
-                    """
-                    self.driver.execute_script(cursor_script)
-
                     start_x, start_y = 560, 225
                     end_x, end_y = 680, 300
                     # actions.move_by_offset(start_x, start_y)
                     actions.move_by_offset(560, 225).perform()
-                    time.sleep(10)
+                    time.sleep(2)
+                    logger.info("Started dragging selector area.")
                     actions.click_and_hold().move_by_offset(end_x - start_x, end_y - start_y).release().perform()
                     actions.reset_actions()
+                    logger.info("Completed dragging the selector area.")
 
                     time.sleep(2)
                     capture_icon = self.driver.find_element(By.XPATH, "(//*[name()='svg'][@title='Capture'])[1]")
                     capture_icon.click()
+                    logger.info("Captured selection.")
 
                     selector_icon_close = self.driver.find_element(By.XPATH, "(//*[name()='svg'][@title='Selector'])[1]")
                     selector_icon_close.click()
+                    logger.info("Closed the Selector tool.")
                 else:
                     logger.info(f"Entering label data for key field: {keyItem['key_field_name']}")
                     label = self.driver.execute_script("return document.activeElement")
@@ -129,7 +118,7 @@ class KeyExtractionTraining:
             test_document.send_keys(Keys.RETURN)
             time.sleep(5)
 
-            logger.info("Form submission test completed successfully.")
+            logger.info("Key extraction process completed successfully.")
 
         except Exception as e:
             logger.error(f"An error occurred while Extracting keys in Training: {e}")

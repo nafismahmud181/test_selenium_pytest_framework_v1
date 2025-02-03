@@ -1,31 +1,99 @@
-INFO     utils.logger:test_00_test_page.py:25 Starting test: test_login
+INFO     utils.logger:test_02_Transaction_extraction.py:18 Starting test: test_login
 INFO     utils.logger:login_page.py:15 Navigating to login page.
 INFO     utils.logger:login_page.py:21 Entering username.
 INFO     utils.logger:login_page.py:24 Entering password.
-INFO     utils.logger:transaction_zip_upload.py:17 Clicking the 'Upload Transaction' button.
-INFO     utils.logger:transaction_zip_upload.py:23 Selecting the file for upload.
-INFO     utils.logger:transaction_zip_upload.py:33 Clicking the 'Upload' button.
-INFO     utils.logger:transaction_zip_upload.py:41 Waiting for the Batch ID to appear.
-INFO     utils.logger:transaction_zip_upload.py:48 Batch ID retrieved: 20250130.U00012
-INFO     utils.logger:search_batch_transaction.py:60 Entering Batch ID: 20250130.U00012
-INFO     utils.logger:search_batch_transaction.py:42 Batch ID has been cleared in batch_id.json.
-INFO     utils.logger:transaction_linked_batch.py:26 Waiting for the form control to be visible.
-INFO     utils.logger:transaction_extraction_key.py:22 Filling the form with initial data.
-INFO     utils.logger:transaction_extraction_key.py:57 Processing key field: assembly
-INFO     utils.logger:transaction_extraction_key.py:113 Entering label data for key field: assembly
-INFO     utils.logger:transaction_extraction_key.py:57 Processing key field: country code
-INFO     utils.logger:transaction_extraction_key.py:113 Entering label data for key field: country code
-INFO     utils.logger:transaction_extraction_key.py:57 Processing key field: consignee city
-INFO     utils.logger:transaction_extraction_key.py:70 Handling selector for key field: consignee city
-INFO     utils.logger:transaction_extraction_key.py:124 Submitting the form.
-INFO     utils.logger:transaction_extraction_key.py:129 Interacting with the document.
-INFO     utils.logger:transaction_extraction_key.py:133 Form submission test completed successfully.
-INFO     utils.logger:transaction_extraction_table.py:16 Starting the table extraction test.
-INFO     utils.logger:transaction_extraction_table.py:19 Locating and clicking the table view button.
-INFO     utils.logger:transaction_extraction_table.py:28 Scrolling the scrollable section.
-INFO     utils.logger:transaction_extraction_table.py:35 Saving the table pattern.
-INFO     utils.logger:transaction_extraction_table.py:48 Selecting and dragging over the table area.
-INFO     utils.logger:transaction_extraction_table.py:68 Navigating to the test section.
-INFO     utils.logger:transaction_extraction_table.py:74 Testing the document.
-INFO     utils.logger:transaction_reset_definition.py:33 Testing the document.
-INFO     utils.logger:test_00_test_page.py:81 Login test completed successfully.
+INFO     utils.logger:transaction_zip_upload.py:16 Clicking the 'Upload Transaction' button.
+INFO     utils.logger:transaction_zip_upload.py:22 Selecting the file for upload.
+INFO     utils.logger:transaction_zip_upload.py:38 Clicking the 'Upload' button.
+INFO     utils.logger:transaction_zip_upload.py:46 Waiting for the Batch ID to appear.
+INFO     utils.logger:transaction_zip_upload.py:53 Batch ID retrieved: 20250203.U00005
+INFO     utils.logger:transaction_search_batch.py:18 Attempting to retrieve batch ID from batch_id.json.
+INFO     utils.logger:transaction_search_batch.py:26 Successfully retrieved Batch ID: 20250203.U00005
+INFO     utils.logger:transaction_search_batch.py:62 Waiting for form elements to load.
+INFO     utils.logger:transaction_search_batch.py:66 Form elements found.
+INFO     utils.logger:transaction_search_batch.py:71 Entering Batch ID: 20250203.U00005 into the form.
+ERROR    utils.logger:transaction_search_batch.py:83 An error occurred while inputting batch ID: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.160)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6FED102F5+28725]
+	(No symbol) [0x00007FF6FEC72AE0]
+	(No symbol) [0x00007FF6FEB0510A]
+	(No symbol) [0x00007FF6FEADEEA5]
+	(No symbol) [0x00007FF6FEB86F87]
+	(No symbol) [0x00007FF6FEB9FA52]
+	(No symbol) [0x00007FF6FEB7FD53]
+	(No symbol) [0x00007FF6FEB4A0E3]
+	(No symbol) [0x00007FF6FEB4B471]
+	GetHandleVerifier [0x00007FF6FF03F30D+3366989]
+	GetHandleVerifier [0x00007FF6FF0512F0+3440688]
+	GetHandleVerifier [0x00007FF6FF0478FD+3401277]
+	GetHandleVerifier [0x00007FF6FEDDAAAB+858091]
+	(No symbol) [0x00007FF6FEC7E74F]
+	(No symbol) [0x00007FF6FEC7A304]
+	(No symbol) [0x00007FF6FEC7A49D]
+	(No symbol) [0x00007FF6FEC68B69]
+	BaseThreadInitThunk [0x00007FFE90A3E8D7+23]
+	RtlUserThreadStart [0x00007FFE91DDFBCC+44]
+
+INFO     utils.logger:test_03_training_extraction.py:17 Starting test: test_login
+INFO     utils.logger:login_page.py:15 Navigating to login page.
+INFO     utils.logger:login_page.py:21 Entering username.
+INFO     utils.logger:login_page.py:24 Entering password.
+INFO     utils.logger:navigation.py:39 Accessing transaction menu.
+INFO     utils.logger:navigation.py:46 Navigating to training page.
+INFO     utils.logger:navigation.py:53 Navigation to training page completed.
+INFO     utils.logger:training_zip_upload.py:16 Clicking the 'Upload Train Batch' button.
+INFO     utils.logger:training_zip_upload.py:22 Selecting the file for upload.
+INFO     utils.logger:training_zip_upload.py:41 File uploaded successfully.
+INFO     utils.logger:training_zip_upload.py:46 Waiting for the Batch ID to appear.
+ERROR    utils.logger:training_zip_upload.py:63 An error occurred while uploading the zip
+Traceback (most recent call last):
+  File "E:\Selenium\AIDB restructured\test_selenium_pytest_framework_v1\pages\training\training_zip_upload.py", line 47, in zip_upload_part
+    batch_ID = self.wait.until(
+               ~~~~~~~~~~~~~~~^
+        EC.visibility_of_element_located(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            (By.XPATH, "/html/body/div[2]/div/div[3]/div[3]/div/div/div/div/table/tbody/tr[1]/td[2]")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+        ^
+    ).text
+    ^
+  File "C:\Users\Khan Gadget\AppData\Local\Programs\Python\Python313\Lib\site-packages\selenium\webdriver\support\wait.py", line 96, in until
+    value = method(self._driver)
+  File "C:\Users\Khan Gadget\AppData\Local\Programs\Python\Python313\Lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 156, in _predicate
+    return _element_if_visible(driver.find_element(*locator))
+                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Khan Gadget\AppData\Local\Programs\Python\Python313\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 748, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Khan Gadget\AppData\Local\Programs\Python\Python313\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 354, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Khan Gadget\AppData\Local\Programs\Python\Python313\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.160)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6FED102F5+28725]
+	(No symbol) [0x00007FF6FEC72AE0]
+	(No symbol) [0x00007FF6FEB0510A]
+	(No symbol) [0x00007FF6FEADEEA5]
+	(No symbol) [0x00007FF6FEB86F87]
+	(No symbol) [0x00007FF6FEB9FA52]
+	(No symbol) [0x00007FF6FEB7FD53]
+	(No symbol) [0x00007FF6FEB4A0E3]
+	(No symbol) [0x00007FF6FEB4B471]
+	GetHandleVerifier [0x00007FF6FF03F30D+3366989]
+	GetHandleVerifier [0x00007FF6FF0512F0+3440688]
+	GetHandleVerifier [0x00007FF6FF0478FD+3401277]
+	GetHandleVerifier [0x00007FF6FEDDAAAB+858091]
+	(No symbol) [0x00007FF6FEC7E74F]
+	(No symbol) [0x00007FF6FEC7A304]
+	(No symbol) [0x00007FF6FEC7A49D]
+	(No symbol) [0x00007FF6FEC68B69]
+	BaseThreadInitThunk [0x00007FFE90A3E8D7+23]
+	RtlUserThreadStart [0x00007FFE91DDFBCC+44]
+

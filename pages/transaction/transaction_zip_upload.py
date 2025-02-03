@@ -32,16 +32,16 @@ class TransactionZipUpload:
             if not os.path.exists(file_path):
                 raise FileNotFoundError(f"ZIP file not found: {file_path}")
 
-            time.sleep(5)
+            time.sleep(3)
             batch_upload_field.send_keys(file_path)
-            time.sleep(5)
+            time.sleep(2)
             logger.info("Clicking the 'Upload' button.")
             batch_submit_button = self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, "//button[normalize-space()='Upload']"))
             )
             batch_submit_button.click()
 
-            time.sleep(10)
+            time.sleep(5)
 
             logger.info("Waiting for the Batch ID to appear.")
             batch_ID = self.wait.until(

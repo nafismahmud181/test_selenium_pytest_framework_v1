@@ -3,7 +3,7 @@ import pandas as pd
 from selenium.webdriver.common.keys import Keys
 from utils.logger import logger
 
-class AddDocumentsPage:
+class AddDocumentsSection:
     def __init__(self, driver):
         self.driver = driver
 
@@ -57,7 +57,6 @@ class AddDocumentsPage:
 
             Category = self.driver.execute_script("return document.activeElement")
             Category.send_keys(document['category'])
-            time.sleep(5)
             Category.send_keys(Keys.RETURN)
             time.sleep(1)
             Category.send_keys(Keys.TAB)

@@ -2,7 +2,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 from utils.logger import logger
 
-class RadioButtonsPage:
+class RadioButtonsSection:
     def __init__(self, driver):
         self.driver = driver
 
@@ -10,7 +10,7 @@ class RadioButtonsPage:
         logger.info("Interacting with ManualValidation radio button.")
         ManualValidation = self.driver.execute_script("return document.activeElement")
         time.sleep(1)
-        ManualValidation.send_keys(Keys.SPACE)
+        # ManualValidation.send_keys(Keys.SPACE)
         ManualValidation.send_keys(Keys.TAB)
 
         logger.info("Interacting with MultiShipment radio button.")
@@ -36,7 +36,7 @@ class RadioButtonsPage:
         logger.info("Interacting with ExceptionalExcel radio button.")
         ExceptionalExcel = self.driver.execute_script("return document.activeElement")
         time.sleep(1)
-        ExceptionalExcel.send_keys(Keys.SPACE)
+        # ExceptionalExcel.send_keys(Keys.SPACE)
         ExceptionalExcel.send_keys(Keys.TAB)
 
         logger.info("All radio button interactions completed.")

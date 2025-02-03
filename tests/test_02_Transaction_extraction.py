@@ -3,7 +3,6 @@ import time
 
 from utils.logger import logger
 from pages.login_page import LoginPage
-from pages.navigation import NavigationToPages
 from pages.timeline_open_close import TimelineOpenClose
 from pages.transaction.transaction_search_batch import TransactionBatchSearch
 from pages.transaction.transaction_download_json import TransactionJsonDownload

@@ -75,7 +75,8 @@ class TableExtractionTraining:
             test_document = self.driver.find_element(By.XPATH, "//button[normalize-space()='Test Document']")
             test_document.send_keys(Keys.RETURN)
             time.sleep(5)
+            logger.info("Table extraction process completed successfully.")
 
         except Exception as e:
-            logger.error(f"An error occurred while reprocessing a batch: {e}")
+            logger.error(f"An error occurred while extracting Table: {e}")
             raise

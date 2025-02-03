@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utils.logger import logger
 
-class EmailSettingClass:
+class EmailSettingSection:
     def __init__(self, driver):
         self.driver = driver
 
@@ -32,7 +32,7 @@ class EmailSettingClass:
         EmailSubjectMatchCriteria.send_keys(Keys.TAB)
 
         EmailSubjectMatchCriteriaText = self.driver.execute_script("return document.activeElement")
-        EmailSubjectMatchCriteriaText.send_keys("Demo email subject selenium")
+        EmailSubjectMatchCriteriaText.send_keys("Demo email subject seleniummmmm")
         logger.info("Email subject updated.")
         time.sleep(1)
         EmailSubjectMatchCriteriaText.send_keys(Keys.TAB)

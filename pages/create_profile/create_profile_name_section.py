@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from utils.logger import logger
 
-class CreateProfileName:
+class CreateProfileNameSection:
     def __init__(self, driver):
         self.driver = driver
 
@@ -16,7 +16,7 @@ class CreateProfileName:
             CustomerName = WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.ID, "customer-name"))
             )
-            CustomerName.send_keys("E2E Selenium Testing")
+            CustomerName.send_keys("E2E Selenium Testing (1)")
             CustomerName.send_keys(Keys.TAB)
 
             project = self.driver.execute_script("return document.activeElement")

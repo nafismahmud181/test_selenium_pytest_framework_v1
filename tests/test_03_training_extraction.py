@@ -1,6 +1,5 @@
 import time
-from venv import logger
-
+from utils.logger import logger
 from pages.login_page import LoginPage
 from pages.navigation import NavigationToPages
 from pages.timeline_open_close import TimelineOpenClose

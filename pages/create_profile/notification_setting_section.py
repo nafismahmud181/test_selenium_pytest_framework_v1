@@ -3,7 +3,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 from utils.logger import logger
 
-class NotificationSettingPage:
+class NotificationSettingSection:
     def __init__(self, driver):
         self.driver = driver
 
